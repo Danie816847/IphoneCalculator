@@ -4,16 +4,24 @@ let resultDisplayed = false;
 
 function input(val) {
     if (resultDisplayed) {
-        currentInput = '';
+        // If a result is displayed and the input is an operator, continue the calculation
+        if (isNaN(val)) {
+            currentInput += val; // Append the operator to the result
+        } else {
+            // If the input is a number, start a new calculation
+            currentInput = val;
+        }
         resultDisplayed = false;
+    } else {
+        currentInput += val; 
     }
-    currentInput += val;
-    display.textContent = currentInput;
+    display.textContent = currentInput; 
 }
 
 function clearDisplay() {
     currentInput = '';
     display.textContent = '0';
+    resultDisplayed = false; 
 }
 
 function toggleSign() {
@@ -37,10 +45,11 @@ function calculate() {
     try {
         let result = eval(currentInput.replace(/÷/g, '/').replace(/×/g, '*'));
         display.textContent = result;
-        currentInput = result.toString();
-        resultDisplayed = true;
+        currentInput = result.toString(); 
+        resultDisplayed = true; 
     } catch (e) {
         display.textContent = 'Error';
         currentInput = '';
+        resultDisplayed = false; 
     }
 }
