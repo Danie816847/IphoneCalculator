@@ -4,12 +4,10 @@ let resultDisplayed = false;
 
 function input(val) {
     if (resultDisplayed) {
-        // If a result is displayed and the input is an operator, continue the calculation
         if (isNaN(val)) {
             currentInput += val; // Append the operator to the result
         } else {
-            // If the input is a number, start a new calculation
-            currentInput = val;
+            currentInput = val; // Start a new calculation
         }
         resultDisplayed = false;
     } else {
@@ -43,7 +41,7 @@ function toggleSign() {
 
 function calculate() {
     try {   
-        let result = eval(currentInput.replace(/÷/g, '/').replace(/x/g, '*'));
+        let result = eval(currentInput.replace(/÷/g, '/').replace(/×/g, '*'));
         display.textContent = result; 
         currentInput = result.toString(); 
         resultDisplayed = true; 
