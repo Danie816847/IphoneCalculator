@@ -42,14 +42,15 @@ function toggleSign() {
 }
 
 function calculate() {
-    try {   
-        let result = eval(currentInput.replace(/÷/g, '/').replace(/x/g, '*'));
-        display.textContent = result; 
-        currentInput = result.toString(); 
+    try {
+        let sanitizedInput = currentInput.replace(/x/g, '*').replace(/÷/g, '/');
+        let result = eval(sanitizedInput);
+        display.textContent = result;
+        currentInput = result.toString();
         resultDisplayed = true; 
     } catch (e) {
-        display.textContent = 'Error'; 
-        currentInput = ''; 
-        resultDisplayed = false; 
+        display.textContent = 'Error';
+        currentInput = '';
+        resultDisplayed = false;
     }
 }
